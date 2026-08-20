@@ -1,0 +1,142 @@
+/* ==========================================
+   VIDEO MODAL
+========================================== */
+
+.video-modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        rgba(0, 0, 0, 0.82);
+
+    backdrop-filter: blur(8px);
+}
+
+
+/* وقتی Modal باز است */
+
+.video-modal.show {
+
+    display: flex;
+
+}
+
+
+/* ==========================================
+   VIDEO BOX
+========================================== */
+
+.video-box {
+
+    position: relative;
+
+    width: min(900px, 90vw);
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #102638,
+            #07131e
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,0.15);
+
+    box-shadow:
+        0 30px 80px
+        rgba(0,0,0,0.7);
+
+}
+
+
+/* ==========================================
+   TITLE
+========================================== */
+
+#video-title {
+
+    margin-bottom: 18px;
+
+    font-size: 28px;
+
+    color: white;
+
+}
+
+
+/* ==========================================
+   VIDEO
+========================================== */
+
+#country-video {
+
+    width: 100%;
+
+    max-height: 70vh;
+
+    display: block;
+
+    border-radius: 12px;
+
+    background: black;
+
+}
+
+
+/* ==========================================
+   CLOSE BUTTON
+========================================== */
+
+.close-button {
+
+    position: absolute;
+
+    top: 10px;
+
+    right: 12px;
+
+    width: 40px;
+
+    height: 40px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.1);
+
+    color: white;
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.close-button:hover {
+
+    background:
+        rgba(255,255,255,0.2);
+
+    transform: rotate(90deg);
+
+}
