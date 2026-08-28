@@ -1,4 +1,189 @@
 /* ==========================================
+   GENERAL
+========================================== */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+body {
+
+    width: 100vw;
+
+    height: 100vh;
+
+    overflow: hidden;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #12324d,
+            #061521 55%,
+            #02070b
+        );
+
+    color: white;
+
+}
+
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.header {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 80px;
+
+    padding: 0 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    z-index: 20;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.65),
+            transparent
+        );
+
+}
+
+
+.logo {
+
+    font-size: 21px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+}
+
+
+.hint {
+
+    font-size: 14px;
+
+    color:
+        rgba(255,255,255,0.65);
+
+    letter-spacing: 1px;
+
+}
+
+
+/* ==========================================
+   GLOBE
+========================================== */
+
+#globe-container {
+
+    width: 100vw;
+
+    height: 100vh;
+
+}
+
+
+/* ==========================================
+   BOTTOM INFO
+========================================== */
+
+.bottom-info {
+
+    position: fixed;
+
+    left: 30px;
+
+    bottom: 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    z-index: 20;
+
+    color:
+        rgba(255,255,255,0.7);
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
+
+}
+
+
+.status-dot {
+
+    width: 9px;
+
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: #35e0c1;
+
+    box-shadow:
+        0 0 12px #35e0c1;
+
+}
+
+
+/* ==========================================
+   COUNTRY LABEL
+========================================== */
+
+.country-label {
+
+    padding: 5px 8px;
+
+    border-radius: 5px;
+
+    background:
+        rgba(0,0,0,0.75);
+
+    color: white;
+
+    font-size: 11px;
+
+    white-space: nowrap;
+
+    pointer-events: none;
+
+}
+
+
+/* ==========================================
    VIDEO MODAL
 ========================================== */
 
@@ -20,10 +205,11 @@
         rgba(0, 0, 0, 0.82);
 
     backdrop-filter: blur(8px);
+
 }
 
 
-/* وقتی Modal باز است */
+/* MODAL OPEN */
 
 .video-modal.show {
 
@@ -65,7 +251,7 @@
 
 
 /* ==========================================
-   TITLE
+   VIDEO TITLE
 ========================================== */
 
 #video-title {
@@ -76,24 +262,60 @@
 
     color: white;
 
+    padding-right: 45px;
+
 }
 
 
 /* ==========================================
-   VIDEO
+   VIDEO CONTAINER
 ========================================== */
 
-#country-video {
+#video-container {
 
     width: 100%;
 
-    max-height: 70vh;
-
-    display: block;
+    aspect-ratio: 16 / 9;
 
     border-radius: 12px;
 
+    overflow: hidden;
+
     background: black;
+
+}
+
+
+/* ==========================================
+   MP4 VIDEO
+========================================== */
+
+#video-container video {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    background: black;
+
+}
+
+
+/* ==========================================
+   APARAT IFRAME
+========================================== */
+
+#video-container iframe {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    border: none;
 
 }
 
@@ -137,6 +359,63 @@
     background:
         rgba(255,255,255,0.2);
 
-    transform: rotate(90deg);
+    transform:
+        rotate(90deg);
+
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 700px) {
+
+    .header {
+
+        padding: 0 18px;
+
+    }
+
+
+    .logo {
+
+        font-size: 16px;
+
+    }
+
+
+    .hint {
+
+        display: none;
+
+    }
+
+
+    .bottom-info {
+
+        left: 18px;
+
+        bottom: 18px;
+
+    }
+
+
+    .video-box {
+
+        width: 95vw;
+
+        padding: 15px;
+
+        border-radius: 15px;
+
+    }
+
+
+    #video-title {
+
+        font-size: 22px;
+
+    }
 
 }
