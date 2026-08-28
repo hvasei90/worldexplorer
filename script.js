@@ -1,7 +1,7 @@
-// ==========================================
-// WORLD EXPLORER
-// 7 Selected Countries + Aparat Videos
-// ==========================================
+/* ==========================================
+   WORLD EXPLORER
+   7 Selected Countries + Aparat Videos
+========================================== */
 
 
 // ==========================================
@@ -436,7 +436,7 @@ function openCountry(country) {
 
 
     // ======================================
-    // NO VIDEO
+    // NO VIDEO YET
     // ======================================
 
     if (!country.video) {
@@ -461,192 +461,29 @@ function openCountry(country) {
 
 
     // ======================================
-    // KENYA
-    // APARAT EMBED SCRIPT
-    // ======================================
-
-    else if (country.name === "Kenya") {
-
-        const container =
-            document.createElement("div");
-
-        container.id =
-            "63198216209";
-
-        countryVideo.appendChild(
-            container
-        );
-
-
-        const script =
-            document.createElement("script");
-
-        script.type =
-            "text/javascript";
-
-        script.src =
-            "https://www.aparat.com/embed/vly826r?data[rnddiv]=63198216209&data[responsive]=yes";
-
-
-        container.appendChild(
-            script
-        );
-
-    }
-
-
-    // ======================================
-    // AFGHANISTAN
-    // ======================================
-
-    else if (
-        country.name === "Afghanistan"
-    ) {
-
-        const wrapper =
-            document.createElement("div");
-
-        wrapper.style.position =
-            "relative";
-
-        wrapper.style.width =
-            "100%";
-
-        wrapper.style.paddingTop =
-            "57%";
-
-
-        const iframe =
-            document.createElement("iframe");
-
-
-        iframe.src =
-            "https://www.aparat.com/video/video/embed/videohash/jzz5ln8/vt/frame";
-
-
-        iframe.style.position =
-            "absolute";
-
-        iframe.style.top =
-            "0";
-
-        iframe.style.left =
-            "0";
-
-        iframe.style.width =
-            "100%";
-
-        iframe.style.height =
-            "100%";
-
-        iframe.style.border =
-            "none";
-
-
-        iframe.allowFullscreen =
-            true;
-
-        iframe.setAttribute(
-            "webkitallowfullscreen",
-            "true"
-        );
-
-        iframe.setAttribute(
-            "mozallowfullscreen",
-            "true"
-        );
-
-
-        wrapper.appendChild(
-            iframe
-        );
-
-        countryVideo.appendChild(
-            wrapper
-        );
-
-    }
-
-
-    // ======================================
-    // ENGLAND
-    // ======================================
-
-    else if (
-        country.name === "England"
-    ) {
-
-        const wrapper =
-            document.createElement("div");
-
-        wrapper.style.position =
-            "relative";
-
-        wrapper.style.width =
-            "100%";
-
-        wrapper.style.paddingTop =
-            "57%";
-
-
-        const iframe =
-            document.createElement("iframe");
-
-
-        iframe.src =
-            "https://www.aparat.com/video/video/embed/videohash/chclgoe/vt/frame";
-
-
-        iframe.style.position =
-            "absolute";
-
-        iframe.style.top =
-            "0";
-
-        iframe.style.left =
-            "0";
-
-        iframe.style.width =
-            "100%";
-
-        iframe.style.height =
-            "100%";
-
-        iframe.style.border =
-            "none";
-
-
-        iframe.allowFullscreen =
-            true;
-
-        iframe.setAttribute(
-            "webkitallowfullscreen",
-            "true"
-        );
-
-        iframe.setAttribute(
-            "mozallowfullscreen",
-            "true"
-        );
-
-
-        wrapper.appendChild(
-            iframe
-        );
-
-        countryVideo.appendChild(
-            wrapper
-        );
-
-    }
-
-
-    // ======================================
-    // OTHER APARAT VIDEOS
-    // JAPAN / SPAIN / AUSTRALIA / COSTA RICA
+    // APARAT VIDEO
     // ======================================
 
     else {
+
+        // Container مطابق Embed آپارات
+
+        const videoWrapper =
+            document.createElement("div");
+
+        videoWrapper.style.position =
+            "relative";
+
+        videoWrapper.style.width =
+            "100%";
+
+        videoWrapper.style.paddingTop =
+            "57%";
+
+
+        // ==================================
+        // CREATE IFRAME
+        // ==================================
 
         const iframe =
             document.createElement("iframe");
@@ -658,32 +495,53 @@ function openCountry(country) {
             "/vt/frame";
 
 
-        iframe.width =
-            "100%";
+        iframe.style.position =
+            "absolute";
 
-
-        iframe.height =
-            "400";
-
-
-        iframe.frameBorder =
+        iframe.style.top =
             "0";
 
+        iframe.style.left =
+            "0";
 
-        iframe.allow =
-            "autoplay; fullscreen";
+        iframe.style.width =
+            "100%";
 
-
-        iframe.allowFullscreen =
-            true;
-
+        iframe.style.height =
+            "100%";
 
         iframe.style.border =
             "none";
 
 
-        countryVideo.appendChild(
+        // ==================================
+        // APARAT PERMISSIONS
+        // ==================================
+
+        iframe.allowFullscreen =
+            true;
+
+        iframe.setAttribute(
+            "webkitallowfullscreen",
+            "true"
+        );
+
+        iframe.setAttribute(
+            "mozallowfullscreen",
+            "true"
+        );
+
+
+        // ==================================
+        // ADD VIDEO
+        // ==================================
+
+        videoWrapper.appendChild(
             iframe
+        );
+
+        countryVideo.appendChild(
+            videoWrapper
         );
 
     }
