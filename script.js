@@ -298,19 +298,7 @@ fetch(worldURL)
                         selectedCountries[name]
                     ) {
 
-                        return (
-                            '<div style="' +
-                            'padding: 7px 10px;' +
-                            'border-radius: 6px;' +
-                            'background: #07131e;' +
-                            'color: #35e0c1;' +
-                            'border: 1px solid #35e0c1;' +
-                            'font-weight: bold;' +
-                            'font-family: Arial;' +
-                            '">' +
-                            '★ ' + name +
-                            '</div>'
-                        );
+                                               
 
                     }
 
