@@ -89,7 +89,7 @@ const selectedCountries = {
 
 
     // ======================================
-    // 7. ENGLAND
+    // 7. UNITED KINGDOM / ENGLAND
     // ======================================
 
     "United Kingdom": {
@@ -220,6 +220,29 @@ fetch(worldURL)
 
 
         // ======================================
+        // SHOW COUNTRY NAMES IN CONSOLE
+        // ======================================
+
+        console.log(
+            "United Kingdom check:",
+            countries.features
+                .map(country => country.properties.name)
+                .filter(name =>
+                    name &&
+                    (
+                        name
+                            .toLowerCase()
+                            .includes("kingdom")
+                        ||
+                        name
+                            .toLowerCase()
+                            .includes("england")
+                    )
+                )
+        );
+
+
+        // ======================================
         // COUNTRY POLYGONS
         // ======================================
 
@@ -343,7 +366,7 @@ fetch(worldURL)
                                 font-weight: bold;
                                 font-family: Arial;
                             ">
-                                ★ ${name}
+                                ★ ${selectedCountries[name].name}
                             </div>
                         `;
 
