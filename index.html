@@ -1,130 +1,133 @@
-```html
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
-    <meta charset="UTF-8">
+```
+<meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-    <title>World Explorer</title>
+<title>World Explorer</title>
 
-    <link rel="stylesheet"
-          href="style.css">
+<link rel="stylesheet"
+      href="style.css">
+```
 
 </head>
 
-
 <body>
 
+```
+<!-- =====================================
+     HEADER
+====================================== -->
 
-    <!-- =====================================
-         HEADER
-    ====================================== -->
+<header class="header">
 
-    <header class="header">
+    <div class="logo">
+        🌍 WORLD EXPLORER
+    </div>
 
-        <div class="logo">
-            🌍 WORLD EXPLORER
-        </div>
+    <div class="hint">
+        Explore the world
+    </div>
 
-        <div class="hint">
-            Explore the world
-        </div>
-
-    </header>
-
-
-    <!-- =====================================
-         GLOBE
-    ====================================== -->
-
-    <div id="globe-container"></div>
+</header>
 
 
-    <!-- =====================================
-         BOTTOM INFO
-    ====================================== -->
+<!-- =====================================
+     GLOBE
+====================================== -->
 
-    <div class="bottom-info">
+<div id="globe-container"></div>
 
-        <span class="status-dot"></span>
 
-        <span>
-            Drag to explore
-        </span>
+<!-- =====================================
+     BOTTOM INFO
+====================================== -->
+
+<div class="bottom-info">
+
+    <span class="status-dot"></span>
+
+    <span>
+        Drag to explore
+    </span>
+
+</div>
+
+
+<!-- =====================================
+     VIDEO MODAL
+     این بخش در ابتدا کاملاً مخفی است
+====================================== -->
+
+<div id="video-modal"
+     class="video-modal">
+
+
+    <div class="video-box">
+
+
+        <!-- =================================
+             CLOSE BUTTON
+        ================================== -->
+
+        <button id="close-video"
+                class="close-button"
+                aria-label="Close video">
+
+            ×
+
+        </button>
+
+
+        <!-- =================================
+             COUNTRY NAME
+        ================================== -->
+
+        <h2 id="video-title">
+            Japan
+        </h2>
+
+
+        <!-- =================================
+             VIDEO CONTAINER
+             فقط داخل Modal استفاده می‌شود
+        ================================== -->
+
+        <div id="country-video"></div>
+
 
     </div>
 
-
-    <!-- =====================================
-         VIDEO MODAL
-    ====================================== -->
-
-    <div id="video-modal"
-         class="video-modal">
+</div>
 
 
-        <div class="video-box">
+<!-- =====================================
+     LIBRARIES
+====================================== -->
+
+<!-- Globe.gl -->
+
+<script src="https://unpkg.com/globe.gl"></script>
 
 
-            <!-- =================================
-                 CLOSE BUTTON
-            ================================== -->
+<!-- TopoJSON -->
 
-            <button id="close-video"
-                    class="close-button">
-
-                ×
-
-            </button>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
 
 
-            <!-- =================================
-                 COUNTRY NAME
-            ================================== -->
+<!-- =====================================
+     OUR JAVASCRIPT
+====================================== -->
 
-            <h2 id="video-title">
-                Japan
-            </h2>
-
-
-            <!-- =================================
-                 APARAT VIDEO CONTAINER
-            ================================== -->
-
-            <div id="country-video"></div>
-
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================
-         LIBRARIES
-    ====================================== -->
-
-    <!-- Globe.gl -->
-
-    <script src="https://unpkg.com/globe.gl"></script>
-
-
-    <!-- TopoJSON -->
-
-    <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
-
-
-    <!-- =====================================
-         OUR JAVASCRIPT
-    ====================================== -->
-
-    <script src="script.js"></script>
-
+<script src="script.js"></script>
+```
 
 </body>
 
 </html>
-```
