@@ -89,11 +89,11 @@ const selectedCountries = {
 
 
     // ======================================
-    // 7. UNITED KINGDOM
+    // 7. ENGLAND
     // ======================================
 
-    "United Kingdom": {
-        name: "United Kingdom",
+    England: {
+        name: "England",
         video: "chclgoe"
     }
 
@@ -241,18 +241,8 @@ fetch(worldURL)
                         country.properties.name;
 
 
-                    // United Kingdom
-                    // در بعضی نسخه‌های داده ممکن است
-                    // نام متفاوتی داشته باشد.
-
-                    const isUnitedKingdom =
-                        name === "United Kingdom";
-
-
                     if (
                         selectedCountries[name]
-                        ||
-                        isUnitedKingdom
                     ) {
 
                         return "rgba(53,224,193,0.75)";
@@ -289,8 +279,6 @@ fetch(worldURL)
 
                     if (
                         selectedCountries[name]
-                        ||
-                        name === "United Kingdom"
                     ) {
 
                         return "#35e0c1";
@@ -317,8 +305,6 @@ fetch(worldURL)
 
                     if (
                         selectedCountries[name]
-                        ||
-                        name === "United Kingdom"
                     ) {
 
                         return 0.035;
@@ -357,7 +343,7 @@ fetch(worldURL)
                                 font-weight: bold;
                                 font-family: Arial;
                             ">
-                                ★ ${selectedCountries[name].name}
+                                ★ ${name}
                             </div>
                         `;
 
