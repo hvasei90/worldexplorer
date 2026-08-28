@@ -24,75 +24,49 @@ const closeVideo =
 
 // ==========================================
 // SELECTED COUNTRIES
+// Using ISO numeric country IDs
 // ==========================================
 
 const selectedCountries = {
 
-    // ======================================
-    // 1. JAPAN
-    // ======================================
-
-    Japan: {
+    // Japan
+    "392": {
         name: "Japan",
         video: "bvl607w"
     },
 
-
-    // ======================================
-    // 2. SPAIN
-    // ======================================
-
-    Spain: {
+    // Spain
+    "724": {
         name: "Spain",
         video: "iiwd9gm"
     },
 
-
-    // ======================================
-    // 3. AUSTRALIA
-    // ======================================
-
-    Australia: {
+    // Australia
+    "036": {
         name: "Australia",
         video: "nmdq98x"
     },
 
-
-    // ======================================
-    // 4. KENYA
-    // ======================================
-
-    Kenya: {
+    // Kenya
+    "404": {
         name: "Kenya",
         video: "vly826r"
     },
 
-
-    // ======================================
-    // 5. COSTA RICA
-    // ======================================
-
-    "Costa Rica": {
+    // Costa Rica
+    "188": {
         name: "Costa Rica",
         video: "uupa29t"
     },
 
-
-    // ======================================
-    // 6. AFGHANISTAN
-    // ======================================
-
-    Afghanistan: {
+    // Afghanistan
+    "004": {
         name: "Afghanistan",
         video: "jzz5ln8"
     },
 
-
-    // ======================================
-    // 7. UNITED KINGDOM
-    // ======================================
-
-    "United Kingdom": {
+    // United Kingdom
+    "826": {
         name: "England",
         video: "chclgoe"
     }
@@ -118,11 +92,11 @@ const globe = Globe()(
 globe
 
     .globeImageUrl(
-        "https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+        "https://unpkg.com/globe.gl/example/img/earth-blue-marble.jpg"
     )
 
     .bumpImageUrl(
-        "https://unpkg.com/three-globe/example/img/earth-topology.png"
+        "https://unpkg.com/globe.gl/example/img/earth-topology.png"
     )
 
     .showAtmosphere(true)
@@ -169,6 +143,39 @@ globe.pointOfView({
     altitude: 2.3
 
 });
+
+
+// ==========================================
+// GET COUNTRY ID
+// ==========================================
+
+function getCountryId(country) {
+
+    /*
+       world-atlas normally stores the country
+       identifier in country.id.
+
+       Convert it to a string so that IDs such as
+       004, 036, 392 and 826 can be compared.
+    */
+
+    return String(country.id).padStart(3, "0");
+
+}
+
+
+// ==========================================
+// GET SELECTED COUNTRY
+// ==========================================
+
+function getSelectedCountry(country) {
+
+    const id =
+        getCountryId(country);
+
+    return selectedCountries[id] || null;
+
+}
 
 
 // ==========================================
@@ -220,6 +227,34 @@ fetch(worldURL)
 
 
         // ======================================
+        // CHECK SELECTED COUNTRIES
+        // ======================================
+
+        countries.features.forEach(
+            country => {
+
+                const id =
+                    getCountryId(country);
+
+                const selected =
+                    getSelectedCountry(country);
+
+
+                if (selected) {
+
+                    console.log(
+                        "Selected country found:",
+                        id,
+                        selected.name
+                    );
+
+                }
+
+            }
+        );
+
+
+        // ======================================
         // COUNTRY POLYGONS
         // ======================================
 
@@ -237,13 +272,11 @@ fetch(worldURL)
             .polygonCapColor(
                 country => {
 
-                    const name =
-                        country.properties.name;
+                    const selected =
+                        getSelectedCountry(country);
 
 
-                    if (
-                        selectedCountries[name]
-                    ) {
+                    if (selected) {
 
                         return "rgba(53,224,193,0.75)";
 
@@ -273,13 +306,11 @@ fetch(worldURL)
             .polygonStrokeColor(
                 country => {
 
-                    const name =
-                        country.properties.name;
+                    const selected =
+                        getSelectedCountry(country);
 
 
-                    if (
-                        selectedCountries[name]
-                    ) {
+                    if (selected) {
 
                         return "#35e0c1";
 
@@ -299,13 +330,11 @@ fetch(worldURL)
             .polygonAltitude(
                 country => {
 
-                    const name =
-                        country.properties.name;
+                    const selected =
+                        getSelectedCountry(country);
 
 
-                    if (
-                        selectedCountries[name]
-                    ) {
+                    if (selected) {
 
                         return 0.035;
 
@@ -325,13 +354,16 @@ fetch(worldURL)
             .polygonLabel(
                 country => {
 
+                    const selected =
+                        getSelectedCountry(country);
+
+
                     const name =
-                        country.properties.name;
+                        country.properties.name ||
+                        "Unknown";
 
 
-                    if (
-                        selectedCountries[name]
-                    ) {
+                    if (selected) {
 
                         return (
                             '<div style="' +
@@ -344,7 +376,7 @@ fetch(worldURL)
                             'font-family: Arial;' +
                             '">' +
                             '★ ' +
-                            name +
+                            selected.name +
                             '</div>'
                         );
 
@@ -374,22 +406,25 @@ fetch(worldURL)
             .onPolygonClick(
                 country => {
 
-                    const name =
-                        country.properties.name;
+                    const id =
+                        getCountryId(country);
+
+
+                    const selected =
+                        getSelectedCountry(country);
 
 
                     console.log(
-                        "Clicked:",
-                        name
+                        "Clicked country:",
+                        id,
+                        country.properties.name
                     );
 
 
-                    if (
-                        selectedCountries[name]
-                    ) {
+                    if (selected) {
 
                         openCountry(
-                            selectedCountries[name]
+                            selected
                         );
 
                     }
@@ -438,7 +473,7 @@ function openCountry(country) {
 
 
     // ======================================
-    // NO VIDEO YET
+    // NO VIDEO
     // ======================================
 
     if (!country.video) {
@@ -546,17 +581,13 @@ function openCountry(country) {
 
 
         // ----------------------------------
-        // ADD IFRAME TO WRAPPER
+        // ADD IFRAME
         // ----------------------------------
 
         videoWrapper.appendChild(
             iframe
         );
 
-
-        // ----------------------------------
-        // ADD WRAPPER TO VIDEO CONTAINER
-        // ----------------------------------
 
         countryVideo.appendChild(
             videoWrapper
