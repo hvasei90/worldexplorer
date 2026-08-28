@@ -28,57 +28,74 @@ const closeVideo =
 
 const selectedCountries = {
 
+    // ======================================
+    // 1. JAPAN
+    // ======================================
+
     Japan: {
         name: "Japan",
         video: "bvl607w"
     },
+
+
+    // ======================================
+    // 2. SPAIN
+    // ======================================
 
     Spain: {
         name: "Spain",
         video: "iiwd9gm"
     },
 
+
+    // ======================================
+    // 3. AUSTRALIA
+    // ======================================
+
     Australia: {
         name: "Australia",
         video: "nmdq98x"
     },
+
+
+    // ======================================
+    // 4. KENYA
+    // ======================================
 
     Kenya: {
         name: "Kenya",
         video: "vly826r"
     },
 
+
+    // ======================================
+    // 5. COSTA RICA
+    // ======================================
+
     "Costa Rica": {
         name: "Costa Rica",
         video: "uupa29t"
     },
+
+
+    // ======================================
+    // 6. AFGHANISTAN
+    // ======================================
 
     Afghanistan: {
         name: "Afghanistan",
         video: "jzz5ln8"
     },
 
+
+    // ======================================
+    // 7. UNITED KINGDOM
+    // ======================================
+
     "United Kingdom": {
         name: "United Kingdom",
         video: "chclgoe"
     }
-
-};
-
-
-// ==========================================
-// COUNTRY ID MAP
-// ==========================================
-
-const countryIDs = {
-
-    "392": "Japan",
-    "724": "Spain",
-    "036": "Australia",
-    "404": "Kenya",
-    "188": "Costa Rica",
-    "004": "Afghanistan",
-    "826": "United Kingdom"
 
 };
 
@@ -220,16 +237,22 @@ fetch(worldURL)
             .polygonCapColor(
                 country => {
 
-                    const id =
-                        String(country.id).padStart(3, "0");
+                    const name =
+                        country.properties.name;
 
-                    const countryName =
-                        countryIDs[id];
+
+                    // United Kingdom
+                    // در بعضی نسخه‌های داده ممکن است
+                    // نام متفاوتی داشته باشد.
+
+                    const isUnitedKingdom =
+                        name === "United Kingdom";
 
 
                     if (
-                        countryName &&
-                        selectedCountries[countryName]
+                        selectedCountries[name]
+                        ||
+                        isUnitedKingdom
                     ) {
 
                         return "rgba(53,224,193,0.75)";
@@ -260,16 +283,14 @@ fetch(worldURL)
             .polygonStrokeColor(
                 country => {
 
-                    const id =
-                        String(country.id).padStart(3, "0");
-
-                    const countryName =
-                        countryIDs[id];
+                    const name =
+                        country.properties.name;
 
 
                     if (
-                        countryName &&
-                        selectedCountries[countryName]
+                        selectedCountries[name]
+                        ||
+                        name === "United Kingdom"
                     ) {
 
                         return "#35e0c1";
@@ -290,16 +311,14 @@ fetch(worldURL)
             .polygonAltitude(
                 country => {
 
-                    const id =
-                        String(country.id).padStart(3, "0");
-
-                    const countryName =
-                        countryIDs[id];
+                    const name =
+                        country.properties.name;
 
 
                     if (
-                        countryName &&
-                        selectedCountries[countryName]
+                        selectedCountries[name]
+                        ||
+                        name === "United Kingdom"
                     ) {
 
                         return 0.035;
@@ -320,16 +339,12 @@ fetch(worldURL)
             .polygonLabel(
                 country => {
 
-                    const id =
-                        String(country.id).padStart(3, "0");
-
-                    const countryName =
-                        countryIDs[id];
+                    const name =
+                        country.properties.name;
 
 
                     if (
-                        countryName &&
-                        selectedCountries[countryName]
+                        selectedCountries[name]
                     ) {
 
                         return `
@@ -342,15 +357,11 @@ fetch(worldURL)
                                 font-weight: bold;
                                 font-family: Arial;
                             ">
-                                ★ ${selectedCountries[countryName].name}
+                                ★ ${selectedCountries[name].name}
                             </div>
                         `;
 
                     }
-
-
-                    const name =
-                        country.properties.name || "Unknown";
 
 
                     return `
@@ -376,26 +387,22 @@ fetch(worldURL)
             .onPolygonClick(
                 country => {
 
-                    const id =
-                        String(country.id).padStart(3, "0");
-
-                    const countryName =
-                        countryIDs[id];
+                    const name =
+                        country.properties.name;
 
 
                     console.log(
                         "Clicked:",
-                        countryName || country.id
+                        name
                     );
 
 
                     if (
-                        countryName &&
-                        selectedCountries[countryName]
+                        selectedCountries[name]
                     ) {
 
                         openCountry(
-                            selectedCountries[countryName]
+                            selectedCountries[name]
                         );
 
                     }
