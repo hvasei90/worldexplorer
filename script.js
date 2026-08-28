@@ -89,10 +89,10 @@ const selectedCountries = {
 
 
     // ======================================
-    // 7. ENGLAND
+    // 7. UNITED KINGDOM
     // ======================================
 
-    England: {
+    "United Kingdom": {
         name: "England",
         video: "chclgoe"
     }
@@ -333,34 +333,35 @@ fetch(worldURL)
                         selectedCountries[name]
                     ) {
 
-                        return `
-                            <div style="
-                                padding: 7px 10px;
-                                border-radius: 6px;
-                                background: #07131e;
-                                color: #35e0c1;
-                                border: 1px solid #35e0c1;
-                                font-weight: bold;
-                                font-family: Arial;
-                            ">
-                                ★ ${name}
-                            </div>
-                        `;
+                        return (
+                            '<div style="' +
+                            'padding: 7px 10px;' +
+                            'border-radius: 6px;' +
+                            'background: #07131e;' +
+                            'color: #35e0c1;' +
+                            'border: 1px solid #35e0c1;' +
+                            'font-weight: bold;' +
+                            'font-family: Arial;' +
+                            '">' +
+                            '★ ' +
+                            name +
+                            '</div>'
+                        );
 
                     }
 
 
-                    return `
-                        <div style="
-                            padding: 6px 9px;
-                            border-radius: 6px;
-                            background: rgba(0,0,0,0.8);
-                            color: white;
-                            font-family: Arial;
-                        ">
-                            ${name}
-                        </div>
-                    `;
+                    return (
+                        '<div style="' +
+                        'padding: 6px 9px;' +
+                        'border-radius: 6px;' +
+                        'background: rgba(0,0,0,0.8);' +
+                        'color: white;' +
+                        'font-family: Arial;' +
+                        '">' +
+                        name +
+                        '</div>'
+                    );
 
                 }
             )
@@ -421,13 +422,17 @@ function openCountry(country) {
     );
 
 
-    // Set title
+    // ======================================
+    // SET TITLE
+    // ======================================
 
     videoTitle.textContent =
         country.name;
 
 
-    // Clear previous player
+    // ======================================
+    // CLEAR PREVIOUS PLAYER
+    // ======================================
 
     countryVideo.innerHTML = "";
 
@@ -438,21 +443,20 @@ function openCountry(country) {
 
     if (!country.video) {
 
-        countryVideo.innerHTML = `
-            <div style="
-                width: 100%;
-                min-height: 300px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: white;
-                font-family: Arial;
-                font-size: 18px;
-                text-align: center;
-            ">
-                Video coming soon...
-            </div>
-        `;
+        countryVideo.innerHTML =
+            '<div style="' +
+            'width: 100%;' +
+            'min-height: 300px;' +
+            'display: flex;' +
+            'align-items: center;' +
+            'justify-content: center;' +
+            'color: white;' +
+            'font-family: Arial;' +
+            'font-size: 18px;' +
+            'text-align: center;' +
+            '">' +
+            'Video coming soon...' +
+            '</div>';
 
     }
 
@@ -462,6 +466,38 @@ function openCountry(country) {
     // ======================================
 
     else {
+
+        // ----------------------------------
+        // VIDEO WRAPPER
+        // ----------------------------------
+
+        const videoWrapper =
+            document.createElement("div");
+
+
+        videoWrapper.style.position =
+            "relative";
+
+
+        videoWrapper.style.width =
+            "100%";
+
+
+        videoWrapper.style.paddingTop =
+            "57%";
+
+
+        videoWrapper.style.overflow =
+            "hidden";
+
+
+        videoWrapper.style.borderRadius =
+            "12px";
+
+
+        // ----------------------------------
+        // IFRAME
+        // ----------------------------------
 
         const iframe =
             document.createElement("iframe");
@@ -473,12 +509,28 @@ function openCountry(country) {
             "/vt/frame";
 
 
-        iframe.width =
+        iframe.style.position =
+            "absolute";
+
+
+        iframe.style.top =
+            "0";
+
+
+        iframe.style.left =
+            "0";
+
+
+        iframe.style.width =
             "100%";
 
 
-        iframe.height =
-            "400";
+        iframe.style.height =
+            "100%";
+
+
+        iframe.style.border =
+            "none";
 
 
         iframe.frameBorder =
@@ -493,12 +545,21 @@ function openCountry(country) {
             true;
 
 
-        iframe.style.border =
-            "none";
+        // ----------------------------------
+        // ADD IFRAME TO WRAPPER
+        // ----------------------------------
 
+        videoWrapper.appendChild(
+            iframe
+        );
+
+
+        // ----------------------------------
+        // ADD WRAPPER TO VIDEO CONTAINER
+        // ----------------------------------
 
         countryVideo.appendChild(
-            iframe
+            videoWrapper
         );
 
     }
