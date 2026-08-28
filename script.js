@@ -92,7 +92,7 @@ const selectedCountries = {
     // 7. ENGLAND
     // ======================================
 
-    United Kingdom: {
+    "United Kingdom": {
         name: "England",
         video: "chclgoe"
     }
