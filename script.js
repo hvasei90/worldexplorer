@@ -89,11 +89,11 @@ const selectedCountries = {
 
 
     // ======================================
-    // 7. UNITED KINGDOM / ENGLAND
+    // 7. ENGLAND
     // ======================================
 
-    "United Kingdom": {
-        name: "England",
+    United Kingdom: {
+        name: "United Kingdom",
         video: "chclgoe"
     }
 
@@ -216,29 +216,6 @@ fetch(worldURL)
         console.log(
             "Countries loaded:",
             countries.features.length
-        );
-
-
-        // ======================================
-        // SHOW COUNTRY NAMES IN CONSOLE
-        // ======================================
-
-        console.log(
-            "United Kingdom check:",
-            countries.features
-                .map(country => country.properties.name)
-                .filter(name =>
-                    name &&
-                    (
-                        name
-                            .toLowerCase()
-                            .includes("kingdom")
-                        ||
-                        name
-                            .toLowerCase()
-                            .includes("england")
-                    )
-                )
         );
 
 
@@ -366,7 +343,7 @@ fetch(worldURL)
                                 font-weight: bold;
                                 font-family: Arial;
                             ">
-                                ★ ${selectedCountries[name].name}
+                                ★ ${name}
                             </div>
                         `;
 
