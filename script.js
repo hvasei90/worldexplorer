@@ -1,7 +1,6 @@
 // ==========================================
 // WORLD EXPLORER
-// Globe + Selected Countries + Videos
-// MP4 + APARAT
+// 7 Selected Countries + Aparat Videos
 // ==========================================
 
 
@@ -12,11 +11,11 @@
 const videoModal =
     document.getElementById("video-modal");
 
+const countryVideo =
+    document.getElementById("country-video");
+
 const videoTitle =
     document.getElementById("video-title");
-
-const videoContainer =
-    document.getElementById("video-container");
 
 const closeVideo =
     document.getElementById("close-video");
@@ -33,13 +32,8 @@ const selectedCountries = {
     // ======================================
 
     Japan: {
-
         name: "Japan",
-
-        type: "mp4",
-
-        video: "videos/japan.mp4"
-
+        video: "bvl607w"
     },
 
 
@@ -48,13 +42,8 @@ const selectedCountries = {
     // ======================================
 
     Spain: {
-
         name: "Spain",
-
-        type: "mp4",
-
-        video: "videos/spain.mp4"
-
+        video: "iiwd9gm"
     },
 
 
@@ -63,13 +52,8 @@ const selectedCountries = {
     // ======================================
 
     Australia: {
-
         name: "Australia",
-
-        type: "mp4",
-
-        video: "videos/australia.mp4"
-
+        video: "nmdq98x"
     },
 
 
@@ -78,14 +62,8 @@ const selectedCountries = {
     // ======================================
 
     Kenya: {
-
         name: "Kenya",
-
-        type: "aparat",
-
-        video:
-            "https://www.aparat.com/video/video/embed/videohash/vly826r/vt/frame"
-
+        video: "vly826r"
     },
 
 
@@ -94,13 +72,8 @@ const selectedCountries = {
     // ======================================
 
     "Costa Rica": {
-
         name: "Costa Rica",
-
-        type: "mp4",
-
-        video: "videos/costa-rica.mp4"
-
+        video: "uupa29t"
     },
 
 
@@ -109,14 +82,8 @@ const selectedCountries = {
     // ======================================
 
     Afghanistan: {
-
         name: "Afghanistan",
-
-        type: "aparat",
-
-        video:
-            "https://www.aparat.com/video/video/embed/videohash/jzz5ln8/vt/frame"
-
+        video: "jzz5ln8"
     },
 
 
@@ -125,14 +92,8 @@ const selectedCountries = {
     // ======================================
 
     England: {
-
         name: "England",
-
-        type: "aparat",
-
-        video:
-            "https://www.aparat.com/video/video/embed/videohash/chclgoe/vt/frame"
-
+        video: "chclgoe"
     }
 
 };
@@ -171,13 +132,9 @@ globe
 
     .backgroundColor("#02070b")
 
-    .width(
-        window.innerWidth
-    )
+    .width(window.innerWidth)
 
-    .height(
-        window.innerHeight
-    );
+    .height(window.innerHeight);
 
 
 // ==========================================
@@ -239,15 +196,14 @@ fetch(worldURL)
 
     .then(world => {
 
-
         console.log(
             "World map loaded successfully"
         );
 
 
-        // ==================================
+        // ======================================
         // CONVERT TO GEOJSON
-        // ==================================
+        // ======================================
 
         const countries =
             topojson.feature(
@@ -262,9 +218,9 @@ fetch(worldURL)
         );
 
 
-        // ==================================
+        // ======================================
         // COUNTRY POLYGONS
-        // ==================================
+        // ======================================
 
         globe
 
@@ -273,9 +229,9 @@ fetch(worldURL)
             )
 
 
-            // =================================
+            // ==================================
             // COUNTRY COLOR
-            // =================================
+            // ==================================
 
             .polygonCapColor(
                 country => {
@@ -299,9 +255,9 @@ fetch(worldURL)
             )
 
 
-            // =================================
+            // ==================================
             // COUNTRY SIDE
-            // =================================
+            // ==================================
 
             .polygonSideColor(
                 () =>
@@ -309,9 +265,9 @@ fetch(worldURL)
             )
 
 
-            // =================================
+            // ==================================
             // COUNTRY BORDER
-            // =================================
+            // ==================================
 
             .polygonStrokeColor(
                 country => {
@@ -335,9 +291,9 @@ fetch(worldURL)
             )
 
 
-            // =================================
+            // ==================================
             // COUNTRY HEIGHT
-            // =================================
+            // ==================================
 
             .polygonAltitude(
                 country => {
@@ -361,9 +317,9 @@ fetch(worldURL)
             )
 
 
-            // =================================
+            // ==================================
             // HOVER LABEL
-            // =================================
+            // ==================================
 
             .polygonLabel(
                 country => {
@@ -371,8 +327,6 @@ fetch(worldURL)
                     const name =
                         country.properties.name;
 
-
-                    // SELECTED COUNTRY
 
                     if (
                         selectedCountries[name]
@@ -395,8 +349,6 @@ fetch(worldURL)
                     }
 
 
-                    // NORMAL COUNTRY
-
                     return `
                         <div style="
                             padding: 6px 9px;
@@ -413,9 +365,9 @@ fetch(worldURL)
             )
 
 
-            // =================================
+            // ==================================
             // CLICK COUNTRY
-            // =================================
+            // ==================================
 
             .onPolygonClick(
                 country => {
@@ -425,12 +377,10 @@ fetch(worldURL)
 
 
                     console.log(
-                        "Clicked country:",
+                        "Clicked:",
                         name
                     );
 
-
-                    // Is selected?
 
                     if (
                         selectedCountries[name]
@@ -459,14 +409,13 @@ fetch(worldURL)
 
 
 // ==========================================
-// OPEN COUNTRY
+// OPEN COUNTRY VIDEO
 // ==========================================
 
 function openCountry(country) {
 
-
     console.log(
-        "Opening video:",
+        "Opening:",
         country.name
     );
 
@@ -480,86 +429,127 @@ function openCountry(country) {
 
 
     // ======================================
-    // CLEAR OLD VIDEO
+    // CLEAR PREVIOUS PLAYER
     // ======================================
 
-    videoContainer.innerHTML = "";
+    countryVideo.innerHTML = "";
 
 
     // ======================================
-    // MP4
+    // NO VIDEO
     // ======================================
 
-    if (
-        country.type === "mp4"
-    ) {
+    if (!country.video) {
 
-
-        const video =
-            document.createElement(
-                "video"
-            );
-
-
-        video.controls = true;
-
-        video.playsInline = true;
-
-        video.autoplay = true;
-
-
-        video.src =
-            country.video;
-
-
-        videoContainer.appendChild(
-            video
-        );
-
-
-        video.load();
-
-
-        video.play()
-            .catch(() => {
-
-                console.log(
-                    "Autoplay blocked."
-                );
-
-            });
+        countryVideo.innerHTML = `
+            <div style="
+                width: 100%;
+                min-height: 300px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-family: Arial;
+                font-size: 18px;
+                text-align: center;
+            ">
+                Video coming soon...
+            </div>
+        `;
 
     }
 
 
     // ======================================
-    // APARAT
+    // KENYA
+    // APARAT EMBED SCRIPT
+    // ======================================
+
+    else if (country.name === "Kenya") {
+
+        const container =
+            document.createElement("div");
+
+        container.id =
+            "63198216209";
+
+        countryVideo.appendChild(
+            container
+        );
+
+
+        const script =
+            document.createElement("script");
+
+        script.type =
+            "text/javascript";
+
+        script.src =
+            "https://www.aparat.com/embed/vly826r?data[rnddiv]=63198216209&data[responsive]=yes";
+
+
+        container.appendChild(
+            script
+        );
+
+    }
+
+
+    // ======================================
+    // AFGHANISTAN
     // ======================================
 
     else if (
-        country.type === "aparat"
+        country.name === "Afghanistan"
     ) {
+
+        const wrapper =
+            document.createElement("div");
+
+        wrapper.style.position =
+            "relative";
+
+        wrapper.style.width =
+            "100%";
+
+        wrapper.style.paddingTop =
+            "57%";
 
 
         const iframe =
-            document.createElement(
-                "iframe"
-            );
+            document.createElement("iframe");
 
 
         iframe.src =
-            country.video;
+            "https://www.aparat.com/video/video/embed/videohash/jzz5ln8/vt/frame";
+
+
+        iframe.style.position =
+            "absolute";
+
+        iframe.style.top =
+            "0";
+
+        iframe.style.left =
+            "0";
+
+        iframe.style.width =
+            "100%";
+
+        iframe.style.height =
+            "100%";
+
+        iframe.style.border =
+            "none";
 
 
         iframe.allowFullscreen =
             true;
 
-
         iframe.setAttribute(
             "webkitallowfullscreen",
             "true"
         );
-
 
         iframe.setAttribute(
             "mozallowfullscreen",
@@ -567,11 +557,132 @@ function openCountry(country) {
         );
 
 
+        wrapper.appendChild(
+            iframe
+        );
+
+        countryVideo.appendChild(
+            wrapper
+        );
+
+    }
+
+
+    // ======================================
+    // ENGLAND
+    // ======================================
+
+    else if (
+        country.name === "England"
+    ) {
+
+        const wrapper =
+            document.createElement("div");
+
+        wrapper.style.position =
+            "relative";
+
+        wrapper.style.width =
+            "100%";
+
+        wrapper.style.paddingTop =
+            "57%";
+
+
+        const iframe =
+            document.createElement("iframe");
+
+
+        iframe.src =
+            "https://www.aparat.com/video/video/embed/videohash/chclgoe/vt/frame";
+
+
+        iframe.style.position =
+            "absolute";
+
+        iframe.style.top =
+            "0";
+
+        iframe.style.left =
+            "0";
+
+        iframe.style.width =
+            "100%";
+
+        iframe.style.height =
+            "100%";
+
+        iframe.style.border =
+            "none";
+
+
+        iframe.allowFullscreen =
+            true;
+
+        iframe.setAttribute(
+            "webkitallowfullscreen",
+            "true"
+        );
+
+        iframe.setAttribute(
+            "mozallowfullscreen",
+            "true"
+        );
+
+
+        wrapper.appendChild(
+            iframe
+        );
+
+        countryVideo.appendChild(
+            wrapper
+        );
+
+    }
+
+
+    // ======================================
+    // OTHER APARAT VIDEOS
+    // JAPAN / SPAIN / AUSTRALIA / COSTA RICA
+    // ======================================
+
+    else {
+
+        const iframe =
+            document.createElement("iframe");
+
+
+        iframe.src =
+            "https://www.aparat.com/video/video/embed/videohash/" +
+            country.video +
+            "/vt/frame";
+
+
+        iframe.width =
+            "100%";
+
+
+        iframe.height =
+            "400";
+
+
+        iframe.frameBorder =
+            "0";
+
+
         iframe.allow =
             "autoplay; fullscreen";
 
 
-        videoContainer.appendChild(
+        iframe.allowFullscreen =
+            true;
+
+
+        iframe.style.border =
+            "none";
+
+
+        countryVideo.appendChild(
             iframe
         );
 
@@ -595,13 +706,7 @@ function openCountry(country) {
 
 function closeCountryVideo() {
 
-
-    // Stop video / iframe
-
-    videoContainer.innerHTML = "";
-
-
-    // Hide modal
+    countryVideo.innerHTML = "";
 
     videoModal.classList.remove(
         "show"
@@ -621,7 +726,7 @@ closeVideo.addEventListener(
 
 
 // ==========================================
-// CLICK OUTSIDE
+// CLICK OUTSIDE VIDEO
 // ==========================================
 
 videoModal.addEventListener(
@@ -661,7 +766,7 @@ document.addEventListener(
 
 
 // ==========================================
-// RESIZE
+// WINDOW RESIZE
 // ==========================================
 
 window.addEventListener(
