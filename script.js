@@ -1,7 +1,7 @@
-/* ==========================================
-   WORLD EXPLORER
-   7 Selected Countries + Aparat Videos
-========================================== */
+// ==========================================
+// WORLD EXPLORER
+// 7 Selected Countries + Aparat Videos
+// ==========================================
 
 
 // ==========================================
@@ -461,29 +461,45 @@ function openCountry(country) {
 
 
     // ======================================
-    // APARAT VIDEO
+    // APARAT EMBED VIDEO
     // ======================================
 
     else {
 
-        // Container مطابق Embed آپارات
+        // ساخت container مطابق Embed آپارات
 
-        const videoWrapper =
+        const wrapper =
             document.createElement("div");
 
-        videoWrapper.style.position =
+
+        wrapper.className =
+            "h_iframe-aparat_embed_frame";
+
+
+        wrapper.style.position =
             "relative";
 
-        videoWrapper.style.width =
-            "100%";
 
-        videoWrapper.style.paddingTop =
+        // فضای 57 درصدی مطابق Embed آپارات
+
+        const ratio =
+            document.createElement("span");
+
+
+        ratio.style.display =
+            "block";
+
+
+        ratio.style.paddingTop =
             "57%";
 
 
-        // ==================================
-        // CREATE IFRAME
-        // ==================================
+        wrapper.appendChild(
+            ratio
+        );
+
+
+        // ساخت iframe
 
         const iframe =
             document.createElement("iframe");
@@ -498,33 +514,36 @@ function openCountry(country) {
         iframe.style.position =
             "absolute";
 
+
         iframe.style.top =
             "0";
+
 
         iframe.style.left =
             "0";
 
+
         iframe.style.width =
             "100%";
 
+
         iframe.style.height =
             "100%";
+
 
         iframe.style.border =
             "none";
 
 
-        // ==================================
-        // APARAT PERMISSIONS
-        // ==================================
-
         iframe.allowFullscreen =
             true;
+
 
         iframe.setAttribute(
             "webkitallowfullscreen",
             "true"
         );
+
 
         iframe.setAttribute(
             "mozallowfullscreen",
@@ -532,16 +551,17 @@ function openCountry(country) {
         );
 
 
-        // ==================================
-        // ADD VIDEO
-        // ==================================
+        // اضافه کردن iframe
 
-        videoWrapper.appendChild(
+        wrapper.appendChild(
             iframe
         );
 
+
+        // اضافه کردن کل Embed به Modal
+
         countryVideo.appendChild(
-            videoWrapper
+            wrapper
         );
 
     }
