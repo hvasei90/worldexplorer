@@ -28,74 +28,57 @@ const closeVideo =
 
 const selectedCountries = {
 
-    // ======================================
-    // 1. JAPAN
-    // ======================================
-
     Japan: {
         name: "Japan",
         video: "bvl607w"
     },
-
-
-    // ======================================
-    // 2. SPAIN
-    // ======================================
 
     Spain: {
         name: "Spain",
         video: "iiwd9gm"
     },
 
-
-    // ======================================
-    // 3. AUSTRALIA
-    // ======================================
-
     Australia: {
         name: "Australia",
         video: "nmdq98x"
     },
-
-
-    // ======================================
-    // 4. KENYA
-    // ======================================
 
     Kenya: {
         name: "Kenya",
         video: "vly826r"
     },
 
-
-    // ======================================
-    // 5. COSTA RICA
-    // ======================================
-
     "Costa Rica": {
         name: "Costa Rica",
         video: "uupa29t"
     },
-
-
-    // ======================================
-    // 6. AFGHANISTAN
-    // ======================================
 
     Afghanistan: {
         name: "Afghanistan",
         video: "jzz5ln8"
     },
 
-
-    // ======================================
-    // 7. ENGLAND
-    // ======================================
-
     "United Kingdom": {
         name: "United Kingdom",
         video: "chclgoe"
     }
+
+};
+
+
+// ==========================================
+// COUNTRY ID MAP
+// ==========================================
+
+const countryIDs = {
+
+    "392": "Japan",
+    "724": "Spain",
+    "036": "Australia",
+    "404": "Kenya",
+    "188": "Costa Rica",
+    "004": "Afghanistan",
+    "826": "United Kingdom"
 
 };
 
@@ -237,12 +220,16 @@ fetch(worldURL)
             .polygonCapColor(
                 country => {
 
-                    const name =
-                        country.properties.name;
+                    const id =
+                        String(country.id).padStart(3, "0");
+
+                    const countryName =
+                        countryIDs[id];
 
 
                     if (
-                        selectedCountries[name]
+                        countryName &&
+                        selectedCountries[countryName]
                     ) {
 
                         return "rgba(53,224,193,0.75)";
@@ -273,12 +260,16 @@ fetch(worldURL)
             .polygonStrokeColor(
                 country => {
 
-                    const name =
-                        country.properties.name;
+                    const id =
+                        String(country.id).padStart(3, "0");
+
+                    const countryName =
+                        countryIDs[id];
 
 
                     if (
-                        selectedCountries[name]
+                        countryName &&
+                        selectedCountries[countryName]
                     ) {
 
                         return "#35e0c1";
@@ -299,12 +290,16 @@ fetch(worldURL)
             .polygonAltitude(
                 country => {
 
-                    const name =
-                        country.properties.name;
+                    const id =
+                        String(country.id).padStart(3, "0");
+
+                    const countryName =
+                        countryIDs[id];
 
 
                     if (
-                        selectedCountries[name]
+                        countryName &&
+                        selectedCountries[countryName]
                     ) {
 
                         return 0.035;
@@ -325,12 +320,16 @@ fetch(worldURL)
             .polygonLabel(
                 country => {
 
-                    const name =
-                        country.properties.name;
+                    const id =
+                        String(country.id).padStart(3, "0");
+
+                    const countryName =
+                        countryIDs[id];
 
 
                     if (
-                        selectedCountries[name]
+                        countryName &&
+                        selectedCountries[countryName]
                     ) {
 
                         return `
@@ -343,11 +342,15 @@ fetch(worldURL)
                                 font-weight: bold;
                                 font-family: Arial;
                             ">
-                                ★ ${name}
+                                ★ ${selectedCountries[countryName].name}
                             </div>
                         `;
 
                     }
+
+
+                    const name =
+                        country.properties.name || "Unknown";
 
 
                     return `
@@ -373,22 +376,26 @@ fetch(worldURL)
             .onPolygonClick(
                 country => {
 
-                    const name =
-                        country.properties.name;
+                    const id =
+                        String(country.id).padStart(3, "0");
+
+                    const countryName =
+                        countryIDs[id];
 
 
                     console.log(
                         "Clicked:",
-                        name
+                        countryName || country.id
                     );
 
 
                     if (
-                        selectedCountries[name]
+                        countryName &&
+                        selectedCountries[countryName]
                     ) {
 
                         openCountry(
-                            selectedCountries[name]
+                            selectedCountries[countryName]
                         );
 
                     }
