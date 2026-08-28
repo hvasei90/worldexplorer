@@ -1,3 +1,4 @@
+```javascript
 // ==========================================
 // WORLD EXPLORER
 // 7 Selected Countries + Aparat Videos
@@ -27,35 +28,69 @@ const closeVideo =
 
 const selectedCountries = {
 
+    // ======================================
+    // 1. JAPAN
+    // ======================================
+
     Japan: {
         name: "Japan",
         video: "bvl607w"
     },
+
+
+    // ======================================
+    // 2. SPAIN
+    // ======================================
 
     Spain: {
         name: "Spain",
         video: "iiwd9gm"
     },
 
+
+    // ======================================
+    // 3. AUSTRALIA
+    // ======================================
+
     Australia: {
         name: "Australia",
         video: "nmdq98x"
     },
+
+
+    // ======================================
+    // 4. KENYA
+    // ======================================
 
     Kenya: {
         name: "Kenya",
         video: "vly826r"
     },
 
+
+    // ======================================
+    // 5. COSTA RICA
+    // ======================================
+
     "Costa Rica": {
         name: "Costa Rica",
         video: "uupa29t"
     },
 
+
+    // ======================================
+    // 6. AFGHANISTAN
+    // ======================================
+
     Afghanistan: {
         name: "Afghanistan",
         video: "jzz5ln8"
     },
+
+
+    // ======================================
+    // 7. ENGLAND
+    // ======================================
 
     England: {
         name: "England",
@@ -298,22 +333,34 @@ fetch(worldURL)
                         selectedCountries[name]
                     ) {
 
-                                               
+                        return `
+                            <div style="
+                                padding: 7px 10px;
+                                border-radius: 6px;
+                                background: #07131e;
+                                color: #35e0c1;
+                                border: 1px solid #35e0c1;
+                                font-weight: bold;
+                                font-family: Arial;
+                            ">
+                                ★ ${name}
+                            </div>
+                        `;
 
                     }
 
 
-                    return (
-                        '<div style="' +
-                        'padding: 6px 9px;' +
-                        'border-radius: 6px;' +
-                        'background: rgba(0,0,0,0.8);' +
-                        'color: white;' +
-                        'font-family: Arial;' +
-                        '">' +
-                        name +
-                        '</div>'
-                    );
+                    return `
+                        <div style="
+                            padding: 6px 9px;
+                            border-radius: 6px;
+                            background: rgba(0,0,0,0.8);
+                            color: white;
+                            font-family: Arial;
+                        ">
+                            ${name}
+                        </div>
+                    `;
 
                 }
             )
@@ -391,20 +438,21 @@ function openCountry(country) {
 
     if (!country.video) {
 
-        countryVideo.innerHTML =
-            '<div style="' +
-            'width: 100%;' +
-            'min-height: 300px;' +
-            'display: flex;' +
-            'align-items: center;' +
-            'justify-content: center;' +
-            'color: white;' +
-            'font-family: Arial;' +
-            'font-size: 18px;' +
-            'text-align: center;' +
-            '">' +
-            'Video coming soon...' +
-            '</div>';
+        countryVideo.innerHTML = `
+            <div style="
+                width: 100%;
+                min-height: 300px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-family: Arial;
+                font-size: 18px;
+                text-align: center;
+            ">
+                Video coming soon...
+            </div>
+        `;
 
     }
 
@@ -552,3 +600,4 @@ window.addEventListener(
 
     }
 );
+```
